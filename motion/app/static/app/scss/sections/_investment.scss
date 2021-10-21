@@ -1,0 +1,53 @@
+.investment {
+    padding: 6rem 0 6rem 0;
+    background: $grey-color;
+    
+
+    @media (max-width: 575.98px) {
+        padding: 3rem 1rem;
+    }
+
+    .icon-box {
+        padding: 0 auto;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        background: $white-color;
+
+        @media (max-width: 575.98px) {
+        padding-bottom: 0.85rem;
+        }
+    
+    }
+
+    img {
+        width: 64px;
+        height: 64px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: lighten($primary-color, 10%);
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+
+        @media (max-width: 575.98px) {
+          font-size: 1.5rem;
+        }
+    }
+
+    h4 {
+        font-size: 20px;
+        padding-bottom: 1.5rem;
+        color: lighten($primary-color, 10%);
+        font-family: 'Mukta', sans-serif;
+    }
+
+    p {
+        color: #5c5b5b;
+        font-size: 0.9rem;
+    }
+
+}

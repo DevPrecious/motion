@@ -1,0 +1,30 @@
+
+.menu {
+    @include gradient;
+
+    li {
+        a {
+            color: $white-color !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: all 0.5s ease-in-out;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+        }
+
+        a:hover {
+            @media(max-width: 575.98px) {
+                color: $secondary-color !important;
+            }
+            color: $secondary-color !important;
+        }
+
+        a.active {
+            color: $secondary-color !important;
+        }
+    }
+}
+

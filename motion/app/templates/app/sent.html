@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>motion fx | Forget password</title>
+    <link rel="stylesheet" href="{% static 'app/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/bootstrap-5.1.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/fontawesome-free-5.15.4-web/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/animate.css-main/animate.css' %}">
+</head>
+<body>
+    
+<!-- ////////////////////////////////////////////////////////////////////////////////////////
+                               START - THE NAVBAR SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'app/assets/img/motion fx.png' %}" alt="motion fx logo" width="170">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="https://www.blockchain.com/btc/block/0000000000000000000bc20d9b2c13689cb25d1d11dd8756e16cbd193121ffeb">Daily
+                            Payouts</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+     
+     <main>
+         <!-- ////////////////////////////////////////////////////////////////////////////////////////
+                               START - THE LOGIN SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <section class="sign-up" style='background-image: url("{% static 'app/assets/img/backgrounds/pexels-anthony-shkraba-5583957.jpg' %}");'>
+            <div class="overlay"></div>
+            <div class="container wrapper">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                        <div class="img-box mb-0 animate__animated animate__zoomInDown" style="animation-delay: 1.5s;">
+                            <img src="{% static 'app/assets/img/art & illustration/Finance app_Monochromatic.png' %}" alt="art & illustration" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                        <div class="form-container animate__animated animate__zoomInUp" style="animation-delay: 2.5s;">
+                            <div>
+                                <!-- Section Title Starts -->
+                                <div class="row-header">
+                                    <h2 class="title-head hidden-xs">Email Reset Link has been sent to your <span>mail</span></h2>
+                                    <p class="info-form" id="main">
+                                        Send, receive and securely store your coins in your wallet
+                                    </p>
+                                </div>
+                                <!-- Section Title Ends -->
+                                <!-- Form Starts -->
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {% if errors %}
+                                    <div class="alert alert-danger">
+                                        {{form.errors}}
+                                    </div>
+                                    {% endif %}
+                                    {% if form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        {{form.non_field_errors}}
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- <input type="hidden" name="" value=""> -->
+
+                                    <!-- Input Field Starts -->
+                                    <!-- <h1></h1> -->
+                                    <!-- Input Field Ends -->
+                                    <!-- Input Field Starts -->
+                                    <!-- <div class="form-group">
+                                        <input class="form-control" name="password" id="password" placeholder="Password"
+                                            type="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="text-left">
+                                            <a href="./signup.html">Forget password?</a>
+                                        </p>
+                                    </div> -->
+                                    <!-- Input Field Ends -->
+                                    <!-- Submit Form Button Starts -->
+                                    <!-- <div class="form-group">
+                                        <button class="forms-btn" type="submit">Send Code</button>
+                                        <!-- <p class="text-center">
+                                            don't have an account ? <a href="{% url 'register' %}">signup
+                                                now</a>
+                                        </p> -->
+                                    </div> -->
+                                    <!-- Submit Form Button Ends -->
+                                </form>
+                                <!-- Form Ends -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+     </main> 
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////
+                               START - THE FOOTER SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////-->
+    
+<footer>
+    <section class="site-footer" style='background-image: url("{% static 'app/assets/img/backgrounds/pexels-crypto-crow-1447418.jpg'  %}");'>
+      <div class="overlay"></div>
+      <div class="container text-bold-50 wrapper">
+          <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <a href="{% url 'index' %}">
+                      <img src="{% static 'app/assets/img/motion fx.png' %}" alt="motion fx logo" width="170" class="mb-3">
+                  </a>
+                  <p class="footer-text">Since its establishment, we have shown commendably successful and consistent performance and Trading history. Currently, it is regarded as one of the best, most beneficial, brilliantly successful companies in the industry of Bitcoin Trading and investing.
+                  </p>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="links">
+                      <h4>Useful Links</h4>
+                      <hr style="width: 50px; height: 4px; color: #f6f6f6;" class="mx-left">
+                      <ul>
+                          <li><a href="{% url 'index' %}" id="border-bottom">Home</a></li>
+                          <li><a
+                                  href="https://www.blockchain.com/btc/block/0000000000000000000bc20d9b2c13689cb25d1d11dd8756e16cbd193121ffeb">Daily
+                                  Payouts</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="bordered">
+                      <div class="icon">
+                          <i class="fas fa-address-card fa-2x"></i>
+                      </div>
+                      <div class="icon-contents">
+                          <h5>ADDRESS</h5>
+                          <p>3238 Doctors Drive, Los Angeles,California, 90017 USA</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="bordered">
+                      <div class="icon">
+                          <i class="fas fa-phone fa-2x"></i>
+                      </div>
+                      <div class="icon-contents">
+                          <h5>PHONE</h5>
+                          <p>+1-MOTION-FX</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="bordered">
+                      <div class="icon">
+                          <i class="fas fa-envelope-open-text fa-2x"></i>
+                      </div>
+                      <div class="icon-contents">
+                          <h5>EMAIL</h5>
+                          <p>support@motionfx.com</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="footer-bottom text-center">
+              <div class="container">
+                <hr>
+                  <div class="row">
+                      <span class="copyrights-text">© 2002 -2021 Motion FX. All Rights
+                          Reserved.</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  </footer>
+    
+
+  <script src="{% static 'app/assets/bootstrap-5.1.1-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

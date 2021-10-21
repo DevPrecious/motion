@@ -1,0 +1,373 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>motion fx | Investment</title>
+    <link rel="stylesheet" href="{% static 'app/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/bootstrap-5.1.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/fontawesome-free-5.15.4-web/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/animate.css-main/animate.css' %}">
+</head>
+<body>
+    
+<!-- ////////////////////////////////////////////////////////////////////////////////////////
+                               START - THE NAVBAR SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////-->
+<main>
+    <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'index' %}">
+              <img src="{% static 'app/assets/img/motion fx.png' %}" alt="motion fx logo" width="170">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.blockchain.com/btc/block/0000000000000000000bc20d9b2c13689cb25d1d11dd8756e16cbd193121ffeb">Daily Payouts</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Change Password</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Signout ({{request.user.username}})</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        <!-- ////////////////////////////////////////////////////////////////////////////////////////
+                                       START - THE INVESTMENT SECTION  
+        /////////////////////////////////////////////////////////////////////////////////////////////-->
+        
+        <section class="invest">
+            <div class="container">
+                
+                <!--Alerts-->
+
+                <div class="alert alert-secondary alert-dismissible fade show lh-base" role="alert">
+                    <strong><h5>Welcome back {{request.user.username}}!</h5></strong> <p> You should check in on some of those fields below.</p>
+                    <p>Your account is successfully activated. </p>
+                    <p>For assistance of any kind, contact us at support@motionfx.com or our 24/7 live chat </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+                <div class="alert alert-secondary alert-dismissible fade show lh-base" role="alert">
+                    <strong><h5>Welcome back {{request.user.username}}!</h5></strong><p>You should check in on some of those fields below.</p>
+                    <p>Your account is successfully activated. </p>
+                    <p>For assistance of any kind, contact us at support@motionfx.com or our 24/7 live chat </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div class="plans text-center">
+                    <h2 id="underline" class="mt-5">our plans</h2>
+                    <hr style="width: 100px; height: 4px; color: #370970;" class="mx-auto">
+                </div>
+
+                <div class="card bg-light mt-5 mb-3">
+                    <div class="card-header">
+                      <h4>Topup (Investment)</h4>
+                    </div>
+                    <div class="card-body lh-base">
+                        <h5 class="card-title">Account Topup</h5>
+                        <p class="card-text">Upload payment proof here</p>
+                        {% for message in messages %}
+                        <p style="color:green;">{{message}}</p>
+                        {% endfor %}
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            {{form.errors}}
+                        </div>
+                        {% endif %}
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p><label for="id_username">Username:</label> <input type="text" name="username" value={{ request.user }} readonly
+                                    maxlength="200" required id="id_username"></p>
+                            <p><label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="id_image"></p>
+                            <!--{{proof.as_p}}-->
+                            <button type="submit" class="btn btn-success">Send</button>
+                        </form>
+                        <p class="card-text">Fund your account using any of the packages below.. it is fast, safe & secured.</p>
+                        <h5 class="card-title">REFER A FRIEND</h5>
+                        <p class="card-text">Take advantage of our refer a friend promotion. If you refer a friend to join motionfx,</p>
+                        <p> you both will receive a $200 bonus deposited into your accounts!</p>
+                        <h5 class="card-title">Topup FAQs</h5>
+                        <strong>
+                        <p>what if i want to invest an amount not listed here?</p>
+                        </strong>
+                        <p>you may contact our live chat for further assistance concerning topup (investment)</p>
+                        <p>Note: be aware that the minimum topup amount on this platform is:</p>
+                    </div>
+                </div>
+
+                <!--PLANS-->
+                <div class="row text-center">
+                    {% for package in packages %}
+                    <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-stretch">
+                        <div class="icon-box">
+                            <div class="btc">
+                                <img src="{% static 'app/assets/img/investment/15.png' %}" alt="btc" width="10%">
+                            </div>
+                            <div class="btc-content">
+                                <h6 class="mb-3">{{package.name}}</h6>
+                                <h6 class="mb-3">{{package.percent_per_day}} Daily</h6>
+                                <p>{{package.days}} Days</p>
+                                <p>Return {{package.returns}}</p>
+
+                                <ul class="list-unstyled">
+                                <li> <i class="fas fa-atom"></i>{{package.list.option_one}}</li>
+                                <li> <i class="fas fa-atom"></i> {{package.list.option_two}} Days </li>
+                                <li> <i class="fas fa-atom"></i> {{package.list.option_three}}</li>
+                                <li> <i class="fas fa-atom"></i> {{ package.list.option_four }}</li>
+                                </ul>
+                            </div>
+
+                            <div class="btc-input">
+                                <div>
+                            
+                                    <input type="hidden" name="" id="to-be" value="{{ package.min_amount }}">
+                            
+                                    <!-- Input Field Starts -->
+                            
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Min. ${{package.min_amount}} BTC" id="amount"
+                                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">BTC</span>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Input Field Ends -->
+                                    <p>
+                                        you should have -$6 BTC more for the transaction fee
+                                    </p>
+                                    <!-- Invest Form Button Starts -->
+                                    <div class="form-group">
+                                        <button class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="pay">Deposit</button>
+                                    </div>
+                                    <!-- Invest Form Button Ends -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>  
+        
+        <section class="account-info" style='background-image: url("{% static 'app/assets/img/backgrounds/16.jpg' %}");''>
+            <div class="overlay"></div>
+            <div class="container wrapper">
+                <div class="row text-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="bordered">
+                            <h4 class="mb-4">Account History</h4>
+                            <div class="invested">
+                                <h4>Total Invested Funds</h4>
+                                {% for pay in approved|slice:":1" %}
+                                {% if pay.user_name == request.user %}
+                                {% with amount=pay.amount %}
+                                <p>{{ amount|mul:ccount }} BTC</p>
+                                {% endwith %}
+                                {% else %}
+                                <p>0.0BTC</p>
+                                {% endif %}
+                                {% endfor %}
+                                </div>
+                                <p>
+                                <div class="referral">
+                                    <h4>Interest</h4>
+                                    <!--<p>0.00 BTC</p>-->
+                                    {% for interestt in interest %}
+                                    {% if interestt.user == request.user %}
+                                    <p>{{ interestt.amount }} BTC</p>
+                                    {% else %}
+                                    <p>0 BTC</p>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </p>
+                                <p>
+                                <div class="referral">
+                                    <h4>Referral Reward</h4>
+                                    <!--<p>0.00 BTC</p>-->
+                                    {% for re in ref %}
+                                    {% if re.user == request.user %}
+                                    <p>{{ re.amount }} BTC</p>
+                                    {% else %}
+                                    <p>0 BTC</p>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="divref">
+                            <h4 class="mb-4">Withdrawable</h4>
+                            <p class="div">Dividends: 
+                                {% for divind in divinde %}
+                                {% if divind.user == request.user %}
+                                {{ divind.amount }} BTC
+                                {% else %}
+                                0
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p class="ref">Referral: 
+                                {% for re in ref %}
+                                {% if re.user == request.user %}
+                                {{ re.amount }} BTC
+                                {% else %}
+                                0
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+
+                            <div class="withdraw_button">
+                                <a href="" class="big-btn">WITHDRAW</a>
+                            </div>
+                        </div>
+
+                        <div class="withdraw">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" aria-label="Referral Link"
+                                    aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="button-addon2">COPY</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tier">
+                            <ul class="list-unstyled">
+                                <li>Tier 1 (7% referral rewards) - 0</li>
+                                <li>Tier 2 (3% referral rewards) - 0</li>
+                                <li>Tier 3 (2% referral rewards) - 0</li>
+                                <li>Tier 4 (1% referral rewards) - 0</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Payment Processing</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Please you are about making payment to the following btc address: <br>
+                        {{ settings.btc_address }} <br>
+                        Go ahead an copy it, then send your BTC amount equivalent to the money. if done come back and upload
+                        payment proof. Thanks!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+
+
+        <!-- ////////////////////////////////////////////////////////////////////////////////////////
+                                       START - THE FOOTER SECTION  
+        /////////////////////////////////////////////////////////////////////////////////////////////-->
+    
+        <footer>
+            <section class="site-footer" style='background-image: url("{% static 'app/assets/img/backgrounds/pexels-crypto-crow-1447418.jpg' %}");'>
+              <div class="overlay"></div>
+              <div class="container text-bold-50 wrapper">
+                  <div class="row">
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                          <a href="{% url 'index' %}">
+                              <img src="{% static 'app/assets/img/motion fx.png' %}" alt="motion fx logo" width="170" class="mb-3">
+                          </a>
+                          <p class="footer-text">Since its establishment, we have shown commendably successful and consistent performance and Trading history. Currently, it is regarded as one of the best, most beneficial, brilliantly successful companies in the industry of Bitcoin Trading and investing.
+                          </p>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                          <div class="links">
+                              <h4>Useful Links</h4>
+                              <hr style="width: 50px; height: 4px; color: #f6f6f6;" class="mx-left">
+                              <ul>
+                                  <li><a href="{% url 'index' %}" id="border-bottom">Home</a></li>
+                                  <li><a
+                                          href="https://www.blockchain.com/btc/block/0000000000000000000bc20d9b2c13689cb25d1d11dd8756e16cbd193121ffeb">Daily
+                                          Payouts</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                          <div class="bordered">
+                              <div class="icon">
+                                  <i class="fas fa-address-card fa-2x"></i>
+                              </div>
+                              <div class="icon-contents">
+                                  <h5>ADDRESS</h5>
+                                  <p>{{ setting.address }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                          <div class="bordered">
+                              <div class="icon">
+                                  <i class="fas fa-phone fa-2x"></i>
+                              </div>
+                              <div class="icon-contents">
+                                  <h5>PHONE</h5>
+                                  <p>{{ setting.phone_number }}</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                          <div class="bordered">
+                              <div class="icon">
+                                  <i class="fas fa-envelope-open-text fa-2x"></i>
+                              </div>
+                              <div class="icon-contents">
+                                  <h5>EMAIL</h5>
+                                  <p>{{ setting.email }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+        
+                  <div class="footer-bottom text-center">
+                      <div class="container">
+                        <hr>
+                          <div class="row">
+                              <span class="copyrights-text">© 2002 -2021 Motion FX. All Rights
+                                  Reserved.</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </section>
+          </footer>
+    
+<script src=" {%static 'app/js/jquery.js' %}"> </script>
+<script type="text/javascript" src="{%static 'app/assets/bootstrap-5.1.1-dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'app/assets/bootstrap-5.1.1-dist/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

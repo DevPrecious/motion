@@ -1,0 +1,74 @@
+.testimonials {
+    padding: 4rem 0;
+    background: #f5dffc;
+    
+    .heading {
+        color: rgba($primary-color, 0.7);
+    }
+
+    &__card {
+        background-color: $white-color;
+        padding: 2rem 1.25rem;
+        border-radius: 0.625rem;
+        height: auto;
+        text-align: center;
+
+        i {
+            font-size: 1.5rem;
+            color: rgba($primary-color, 0.7);
+        }
+
+        .ratings {
+
+
+            i {
+                color: rgba($primary-color, 0.7);
+                font-size: 1rem;
+            }
+        }
+    }
+
+    &__picture {
+        width: 6rem;
+        height: 6rem;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        img {
+            border: 0.325rem solid rgba($primary-color, 0.7);
+        }
+    }
+
+    &__name{
+        padding-top: 3rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: 500;
+        color: $white-color;
+
+        h3 {
+            padding-top: 0.8rem;
+            text-transform: capitalize;
+            color: rgba($primary-color, 0.7);
+        }
+
+        p {
+            padding-bottom: 2rem;
+            text-transform: capitalize;
+            color: rgba($primary-color, 0.7);
+        }
+    }
+
+/*
+    .overlay {
+        @include overlay;
+        opacity: 0.4;
+    }
+*/
+    #content {
+        z-index: 2;
+    }
+
+    
+}

@@ -1,0 +1,15 @@
+@mixin gradient {
+    background: linear-gradient(to right, rgba($primary-color,0.95), rgba($sub-color,0.95));
+}
+
+/*
+@mixin overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.4;
+    background: linear-gradient(to right, rgba($primary-color,1.2), rgba($sub-color,1.2));
+}
+*/

@@ -1,0 +1,104 @@
+.sign-up {
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    padding: 10rem 0 2rem 0;
+    font-family: 'Mukta', sans-serif;
+
+    @media (max-width: 575.98px) {
+        padding: 6rem 0 1rem 0; 
+    }
+
+    .wrapper {
+        position: relative;
+    }
+
+    .form-container {
+        .row-header {
+            margin-left: -8rem;
+            text-align: center;
+
+            @media (max-width: 1199.98px) {
+                margin-left: 0; 
+            }
+
+            h2 {
+                color: $white-color;
+                text-transform: uppercase;
+                font-size: 45px;
+                font-weight: 900;
+                margin-bottom: 1rem;
+
+                @media (max-width: 1199.98px) {
+                    font-size: 35px;
+                }
+
+                span {
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+
+    & .info-form {
+        color: $white-color;
+        text-transform: uppercase;
+        color: #f4ebf7;
+        font-size: 14px;
+        margin-bottom: 2rem;
+    }
+
+    & .form-group {
+        width: 70%;
+        margin-left: 2rem;
+
+        @media (max-width: 1199.98px) {
+        width: 100%;
+        margin-left: 0; 
+        }
+
+        p {
+            margin-top: 1rem;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: $white-color;
+            z-index: 2;
+        
+        }
+
+        a {
+            color: $secondary-color;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: darken($color: $secondary-color, $amount: 10%);
+        }
+
+        input {
+            font-size: 12px;
+            padding: 0.8rem;
+            border-radius: 0;
+            border-color: #aa90b4;
+            color: $white-color;
+            box-shadow: none;
+        }
+
+        input::placeholder {
+            color: #f4ebf7;
+            font-family: 'Mukta', sans-serif; 
+            font-size: 12px;
+        }
+
+        input:focus {
+            border-color: $secondary-color;
+            font-size: 14px;
+        }
+
+        .form-control {
+            background-color: transparent;
+            margin-bottom: 2rem;
+        }
+    }
+}

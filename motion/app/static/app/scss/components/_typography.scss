@@ -1,0 +1,68 @@
+.intro  {
+    margin-bottom: -5rem;
+    
+        @media(max-width: 575.98px) {
+            margin-bottom: 0;
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            margin-bottom: 0;
+        }
+    .title {
+        text-transform: capitalize;   
+        font-family: 'Mukta', sans-serif;
+        font-weight: 700;
+        letter-spacing: 3px;
+        font-size: 4rem;
+
+        @media(max-width: 575.98px) {
+            font-size: 2.5rem;
+            letter-spacing: 0;
+            display: block;
+        }
+    }
+
+    .description {
+        font-size: 1.3rem;
+        display: inline-block;
+        font-family: 'Mukta', sans-serif;
+        
+    }
+}
+
+//Heading Line
+
+.heading-line::before {
+    content: "";
+    width: 10rem;
+    height: 0.1rem;
+    display: block;
+    margin: 0 auto;
+    background-color: $primary-color;
+}
+.heading-line::after {
+    content: "";
+    padding-top: 0.5rem;
+    width: 1.5rem;
+    height: 0.3rem;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    background-color: $primary-color;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    //background: linear-gradient(to right, rgba($primary-color,1.2), rgba($sub-color,1.2));
+    background: $primary-color;
+}
+
+
+
+
+
+
